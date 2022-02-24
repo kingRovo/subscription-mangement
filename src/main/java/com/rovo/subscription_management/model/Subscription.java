@@ -2,20 +2,23 @@ package com.rovo.subscription_management.model;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sun.istack.NotNull;
+
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import java.util.Date;
 import java.util.Set;
 
-
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class Subscription {
 
     @Id
@@ -23,9 +26,11 @@ public class Subscription {
     private Long id;
 
     @NotNull
+    @Size(min = 3, max = 10)
     private String name;
 
     @NotNull
+    @Size(min = 5, max = 10)
     private String type;
 
     @NotNull
@@ -37,11 +42,11 @@ public class Subscription {
 
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "plans_id")
+    @JoinColumn(name = "plan_id")
     private Plan plans;
 
     @NotNull
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "hotel_id")
+    @JoinColumn(name = "subscription_id")
     private Set<Hotel> hotels;
 }

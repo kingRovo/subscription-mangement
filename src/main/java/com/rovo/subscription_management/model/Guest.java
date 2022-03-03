@@ -27,6 +27,9 @@ public class Guest {
     private String name;
 
     @NotNull
+    private Long hotel_id;
+
+    @NotNull
     @Size(min = 3, max = 7)
     private String gender;
 

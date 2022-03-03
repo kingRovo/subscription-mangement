@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -21,20 +22,25 @@ public class Plan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(min = 5, max = 30)
+    @Size(min = 3, max = 30)
     @NotNull
     private String name;
 
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "plan_channel",
+            joinColumns = { @JoinColumn(name = "plan_id") },
+            inverseJoinColumns = { @JoinColumn(name = "channel_id") }
+    )
+    Set<Channel> channels = new HashSet<>();
 
 
-    @NotNull
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)	@JoinColumn(name = "plan_id")
-    private Set<Service> service;
-
-
-    @NotNull
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)	@JoinColumn(name = "plan_id")
-    private Set<Channel> channel;
-
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "plan_service",
+            joinColumns = { @JoinColumn(name = "plan_id") },
+            inverseJoinColumns = { @JoinColumn(name = "service_id") }
+    )
+    Set<Services> services = new HashSet<>();
 
 }

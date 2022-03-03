@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import java.util.Date;
-import java.util.Set;
+
 
 @Entity
 @AllArgsConstructor
@@ -26,11 +26,11 @@ public class Subscription {
     private Long id;
 
     @NotNull
-    @Size(min = 3, max = 10)
+    @Size(min = 3, max = 30)
     private String name;
 
     @NotNull
-    @Size(min = 5, max = 10)
+    @Size(min = 3, max = 20)
     private String type;
 
     @NotNull
@@ -41,12 +41,6 @@ public class Subscription {
     private int usageLimit;
 
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "plan_id")
-    private Plan plans;
+    private Long plan_id;
 
-    @NotNull
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "subscription_id")
-    private Set<Hotel> hotels;
 }

@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import java.util.Set;
@@ -24,7 +25,7 @@ public class Hotel {
     private Long id;
 
     @NotNull
-    @Size(min = 5, max = 40)
+    @Size(min = 3, max = 40)
     private String name;
 
     @NotNull
@@ -39,9 +40,8 @@ public class Hotel {
     private int rating;
 
     @NotNull
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "hotel_id")
-    private Set<Guest> guests;
+    @NotEmpty
+    private Long subscription_id;
 
 
 }

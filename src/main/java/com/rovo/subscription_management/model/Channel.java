@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -29,10 +30,9 @@ public class Channel {
     @Size(min = 3, max = 30)
     private String type;
 
-    @ManyToMany(mappedBy = "channels")
-    private Set<Plan> plans = new HashSet<>();
-
-
+    @OneToMany(mappedBy = "channels", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+     private List<Plan> plans;
     @NotNull
     private Boolean isActive;
 

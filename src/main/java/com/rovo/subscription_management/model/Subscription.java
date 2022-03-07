@@ -34,13 +34,18 @@ public class Subscription {
     private String type;
 
     @NotNull
-    @JsonFormat(pattern="yyyy-MM-dd")
+    private Long price;
+
+
+    @JsonFormat(pattern="dd-MM-yyyy")
+    private Date startDate;
+
+    @JsonFormat(pattern="dd-MM-yyyy")
     private Date expireDate;
 
     @NotNull
     private int usageLimit;
 
-    @NotNull
     private Long plan_id;
 
 }

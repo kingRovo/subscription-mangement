@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -30,10 +29,8 @@ public class Services {
     @Size(min = 3, max = 30)
     private  String   type;
 
-
-
-    @ManyToMany(mappedBy = "services")
-    private Set<Plan> plans = new HashSet<>();
-
+    @OneToMany(mappedBy = "services", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private Set<Plan> plans;
 
 }

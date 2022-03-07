@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
 import java.util.Set;
 
-@AllArgsConstructor
+
+
 @NoArgsConstructor
 @Entity
 @Data
@@ -26,21 +26,12 @@ public class Plan {
     @NotNull
     private String name;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "plan_channel",
-            joinColumns = { @JoinColumn(name = "plan_id") },
-            inverseJoinColumns = { @JoinColumn(name = "channel_id") }
-    )
-    Set<Channel> channels = new HashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "channel_id")
+    private Channel channels;
 
-
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "plan_service",
-            joinColumns = { @JoinColumn(name = "plan_id") },
-            inverseJoinColumns = { @JoinColumn(name = "service_id") }
-    )
-    Set<Services> services = new HashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "service_id")
+    private Services services;
 
 }

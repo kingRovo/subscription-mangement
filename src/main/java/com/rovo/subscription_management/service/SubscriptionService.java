@@ -1,13 +1,10 @@
 package com.rovo.subscription_management.service;
 
-
-import com.rovo.subscription_management.model.Plan;
 import com.rovo.subscription_management.model.Subscription;
 import com.rovo.subscription_management.repository.PlanRepo;
 import com.rovo.subscription_management.repository.SubscriptionRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -19,7 +16,17 @@ public class SubscriptionService {
     private final PlanRepo planRepo;
 
     public void addUSubscription(Subscription subscription){
-        subscriptionRepo.save(subscription);
+        if(subscription.getType().equalsIgnoreCase("monthly")){
+            subscription.getType().equalsIgnoreCase("monthly");
+        }
+        else if(subscription.getType().equalsIgnoreCase("yearly")){
+
+            subscription.getType().equalsIgnoreCase("monthly");
+
+        }
+        else{
+
+        }
     }
 
     public List<Subscription> displayAllSubscription(){
@@ -35,6 +42,7 @@ public class SubscriptionService {
             subscription.setPlan_id(planid);
 
         }
+
 
     }
 

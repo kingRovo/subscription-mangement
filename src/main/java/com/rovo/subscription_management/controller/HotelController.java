@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/Hotel")
+@RequestMapping("api/v1/hotel")
 @Slf4j
 @AllArgsConstructor
 public class HotelController {

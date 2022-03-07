@@ -28,6 +28,7 @@ public class SubscriptionController {
     @PostMapping("/")
     private ResponseEntity<?> createSubscription( @Valid @RequestBody Subscription subscription){
         try {
+
             subscriptionService.addUSubscription(subscription);
             log.info("New subscription is created");
             return new ResponseEntity<>(HttpStatus.CREATED);

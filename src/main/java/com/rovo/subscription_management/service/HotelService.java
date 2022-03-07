@@ -36,11 +36,13 @@ public class HotelService {
 
     public void subscribeHotelService(Long hotel_id,Long subscription_id)throws NullPointerException{
 
-        if(!subscriptionRepo.findById(subscription_id).equals(null)){
+        if(!subscriptionRepo.getById(subscription_id).equals(null)){
 
             Hotel hotel = hotelRepo.findById(hotel_id).orElseThrow();
 
             hotel.setSubscription_id(subscription_id);
+
+            hotelRepo.save(hotel);
         }
 
     }
@@ -48,7 +50,10 @@ public class HotelService {
 
     public void newGuestEntry(Long hotel_id, Guest guest){
 
+        if(!hotelRepo.getById(hotel_id).equals(null)){
         guest.setHotel_id(hotel_id);
         guestRepo.save(guest);
+        }
+
     }
 }

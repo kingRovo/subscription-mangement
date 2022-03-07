@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/subscription")
+@RequestMapping("api/v1/subscriptions")
 @Slf4j
 public class SubscriptionController {
 

@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/hotel")
+@RequestMapping("api/v1/hotels")
 @Slf4j
 @AllArgsConstructor
 public class HotelController {
@@ -74,7 +74,7 @@ public class HotelController {
 
     }
     @PostMapping("/{hotel_id}/guests/")
-    ResponseEntity hotelNewGuest(@PathVariable("hotel_id")Long hotel_id, Guest guest){
+    ResponseEntity hotelNewGuest(@PathVariable("hotel_id")Long hotel_id, @RequestBody Guest guest){
 
         try{
 

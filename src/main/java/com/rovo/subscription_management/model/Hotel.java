@@ -39,8 +39,6 @@ public class Hotel {
     @NotNull
     private int rating;
 
-    @NotNull
-    @NotEmpty
     private Long subscription_id;
 
 

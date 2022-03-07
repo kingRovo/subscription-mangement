@@ -51,13 +51,13 @@ public class PlanController {
     }
 
 
-    @PostMapping("/{plan_id}/channel")
-    ResponseEntity addNewChannel(@PathVariable("plan_id") Long plan_id, Channel channel){
+    @PostMapping("/{plan_id}/channel/{channel_id}")
+    ResponseEntity addNewChannel(@PathVariable("plan_id") Long plan_id, @PathVariable("channel_id") Long channel_id){
 
         try{
 
 
-            planService.addChannelToPlan(plan_id,channel);
+            planService.addChannelToPlan(plan_id,channel_id);
 
             log.info("New Channel linked with plan {}"+plan_id);
             return new ResponseEntity<>(HttpStatus.OK);
@@ -73,13 +73,13 @@ public class PlanController {
     }
 
 
-    @PostMapping("/{plan_id}/service")
-    ResponseEntity addNewService(@PathVariable("plan_id") Long plan_id, Services services){
+    @PostMapping("/{plan_id}/service/{service_id}")
+    ResponseEntity addNewService(@PathVariable("plan_id") Long plan_id, @PathVariable("service_id") Long service_id){
 
         try{
 
 
-            planService.addServiceToPlan(plan_id,services);
+            planService.addServiceToPlan(plan_id,service_id);
 
             log.info("New Service linked with plan {}"+plan_id);
             return new ResponseEntity<>(HttpStatus.OK);

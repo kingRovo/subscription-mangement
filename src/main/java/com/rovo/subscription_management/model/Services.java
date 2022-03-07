@@ -29,8 +29,5 @@ public class Services {
     @Size(min = 3, max = 30)
     private  String   type;
 
-    @OneToMany(mappedBy = "services", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    private Set<Plan> plans;
 
 }

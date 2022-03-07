@@ -16,6 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Data
+@AllArgsConstructor
 public class Plan {
 
     @Id
@@ -26,12 +27,11 @@ public class Plan {
     @NotNull
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "channel_id")
-    private Channel channels;
+    @ElementCollection
+    private Set<Long> channel_id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "service_id")
-    private Services services;
+    @ElementCollection
+    private Set<Long> service_id;
+
 
 }

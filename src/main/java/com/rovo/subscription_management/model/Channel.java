@@ -8,11 +8,7 @@ import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -30,9 +26,6 @@ public class Channel {
     @Size(min = 3, max = 30)
     private String type;
 
-    @OneToMany(mappedBy = "channels", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-     private List<Plan> plans;
     @NotNull
     private Boolean isActive;
 

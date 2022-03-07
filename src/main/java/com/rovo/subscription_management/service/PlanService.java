@@ -1,8 +1,6 @@
 package com.rovo.subscription_management.service;
 
-import com.rovo.subscription_management.model.Channel;
 import com.rovo.subscription_management.model.Plan;
-import com.rovo.subscription_management.model.Services;
 import com.rovo.subscription_management.repository.ChannelRepo;
 import com.rovo.subscription_management.repository.PlanRepo;
 import com.rovo.subscription_management.repository.ServiceRepo;
@@ -31,18 +29,18 @@ public class PlanService {
     }
 
     @Transactional
-    public void addServiceToPlan(Long plan_id,Services services){
+    public void addServiceToPlan(Long plan_id,Long service_id){
 
         Plan plan = planRepo.findById(plan_id).orElseThrow();
-        plan.setServices(services);
+        plan.getService_id().add(service_id);
         planRepo.save(plan);
     }
 
     @Transactional
-    public void addChannelToPlan(Long plan_id,Channel channel){
+    public void addChannelToPlan(Long plan_id,Long channel_id){
 
         Plan plan = planRepo.findById(plan_id).orElseThrow();
-        plan.setChannels(channel);
+        plan.getChannel_id().add(channel_id);
         planRepo.save(plan);
     }
 }

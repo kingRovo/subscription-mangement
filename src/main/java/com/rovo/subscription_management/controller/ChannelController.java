@@ -19,7 +19,11 @@ public class ChannelController {
     private final ChannelService channelService;
 
 
-
+    /**
+     * add new channel to DB
+     * @param channel
+     * @return
+     */
     @PostMapping("/")
     public ResponseEntity addChannel(@Valid @RequestBody Channel channel){
 
@@ -34,6 +38,11 @@ public class ChannelController {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
+
+    /**
+     * display all available channel
+     * @return
+     */
     @GetMapping("/")
     public ResponseEntity<List<Channel>> findAllChannel(){
 

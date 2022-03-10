@@ -15,11 +15,21 @@ public class ChannelService {
         this.channelRepo = channelRepo;
     }
 
+    /**
+     * save new channel to DB
+     * @param channel
+     * @return
+     */
     public Channel addChannel(Channel channel){
 
         return channelRepo.save(channel);
 
     }
+
+    /**
+     * Display all channel form database
+     * @return
+     */
     public List<Channel> displayAllActiveChannel(){
 
         return channelRepo.findAll();

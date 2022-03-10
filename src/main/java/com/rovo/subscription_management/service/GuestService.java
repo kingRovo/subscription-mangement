@@ -15,10 +15,21 @@ public class GuestService {
         this.guestRepo = guestRepo;
     }
 
+
+    /**
+     * adding new guest
+     * @param guest
+     * @return
+     */
     public Guest addGuest(Guest guest){
 
         return guestRepo.save(guest);
     }
+
+    /**
+     * fetching users from DB
+     * @return
+     */
     public List<Guest> findAllGuest(){
 
         return guestRepo.findAll();

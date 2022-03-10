@@ -16,6 +16,10 @@ public class SubscriptionService {
 
     private final PlanRepo planRepo;
 
+    /**
+     * add new subscription and add starting and expire date in database
+     * @param subscription
+     */
     public void addUSubscription(Subscription subscription){
 
         Calendar cal = Calendar.getInstance();
@@ -37,10 +41,20 @@ public class SubscriptionService {
         }
     }
 
+    /**
+     * this fun display all subscriptions
+     * @return
+     */
     public List<Subscription> displayAllSubscription(){
         return subscriptionRepo.findAll();
     }
 
+    /**
+     * linking plan to subscriber
+     * @param subscription_id
+     * @param plan_id
+     * @throws NullPointerException
+     */
 
     public void setPlan(Long subscription_id, Long plan_id) throws NullPointerException{
 

@@ -21,6 +21,11 @@ public class HotelController {
     private final HotelService hotelService;
 
 
+    /**
+     * adding new hotel to DB
+     * @param hotel
+     * @return ResponseEntity
+     */
     @PostMapping("/")
     public ResponseEntity addNewHotel(@Valid @RequestBody Hotel hotel){
 
@@ -38,6 +43,11 @@ public class HotelController {
 
 
     }
+
+    /**
+     * find all hotel in DB
+     * @return ResponseEntity
+     */
     @GetMapping("/")
     public ResponseEntity<List<Hotel>> findAllHotel(){
 
@@ -54,6 +64,12 @@ public class HotelController {
     }
 
 
+    /**
+     * subscribe a plan to hotel
+     * @param hotel_id
+     * @param subscription_id
+     * @return ResponseEntity
+     */
     @PostMapping("/{hotel_id}/subscriptions/{subscription_id}")
     ResponseEntity subscribePlan(@PathVariable("hotel_id") Long hotel_id,@PathVariable("subscription_id")Long subscription_id){
 
@@ -73,6 +89,13 @@ public class HotelController {
 
 
     }
+
+    /**
+     * Display all guest in a hotel
+     * @param hotel_id
+     * @param guest
+     * @return ResponseEntity
+     */
     @PostMapping("/{hotel_id}/guests/")
     ResponseEntity hotelNewGuest(@PathVariable("hotel_id")Long hotel_id, @RequestBody Guest guest){
 

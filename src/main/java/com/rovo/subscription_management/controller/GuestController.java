@@ -20,12 +20,20 @@ public class GuestController {
         this.guestService = guestService;
     }
 
+    /**
+     * add new guest to DB
+     * @param guest
+     */
     @PostMapping("/")
     public void addNewGuest(@Valid @RequestBody Guest guest){
 
         guestService.addGuest(guest);
     }
 
+    /**
+     * display all available guest
+     * @return
+     */
     @GetMapping("/")
     public List<Guest> DisplayAllGuest(){
         return guestService.findAllGuest();

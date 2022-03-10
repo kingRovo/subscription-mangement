@@ -23,6 +23,12 @@ public class HotelService {
     private final GuestRepo guestRepo;
 
 
+    /**
+     * adding new hotel to database
+     * @param hotel
+     * @return
+     */
+
     public Hotel addHotel(Hotel hotel){
 
         return hotelRepo.save(hotel);
@@ -33,6 +39,12 @@ public class HotelService {
         return hotelRepo.findAll();
     }
 
+    /**
+     * this method subscribing services.
+     * @param hotel_id
+     * @param subscription_id
+     * @throws NullPointerException
+     */
 
     public void subscribeHotelService(Long hotel_id,Long subscription_id)throws NullPointerException{
 
@@ -47,6 +59,11 @@ public class HotelService {
 
     }
 
+    /**
+     * add new guest in hotel
+     * @param hotel_id
+     * @param guest
+     */
 
     public void newGuestEntry(Long hotel_id, Guest guest){
 

@@ -22,6 +22,11 @@ public class ServicesController {
     private final PlanServicesService planServicesService;
 
 
+    /**
+     * add new service to Db
+     * @param services
+     * @return ResponseEntity
+     */
     @PostMapping("/")
     public ResponseEntity addNewService(@Valid @RequestBody Services services){
 
@@ -38,6 +43,10 @@ public class ServicesController {
 
     }
 
+    /**
+     * fetching all available service
+     * @return ResponseEntity
+     */
     @GetMapping("/")
     public ResponseEntity<List<Services>> findAllServices(){
 

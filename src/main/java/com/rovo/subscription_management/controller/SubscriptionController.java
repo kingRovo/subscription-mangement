@@ -25,6 +25,13 @@ public class SubscriptionController {
         this.subscriptionService = subscriptionService;
     }
 
+
+    /**
+     * create new subscription
+     * @param subscription
+     * @return
+     */
+
     @PostMapping("/")
     private ResponseEntity<?> createSubscription( @Valid @RequestBody Subscription subscription){
         try {
@@ -38,6 +45,12 @@ public class SubscriptionController {
             return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
         }
     }
+
+
+    /**
+     * find all subscription
+     * @return ResponseEntity
+     */
 
     @GetMapping("/")
     public ResponseEntity<List<Subscription>> FindAllSubscription(){
@@ -53,6 +66,12 @@ public class SubscriptionController {
         }
     }
 
+    /**
+     * set plan for subscription
+     * @param subscription_id
+     * @param plan_id
+     * @return ResponseEntity
+     */
 
     @PostMapping("/{subscription_id}/plans/{plan_id}")
     ResponseEntity setPlan(@PathVariable("subscription_id")Long subscription_id,@PathVariable("plan_id")Long plan_id){

@@ -37,10 +37,8 @@ public class Subscription {
     private Long price;
 
 
-    @JsonFormat(pattern="dd-MM-yyyy")
     private Date startDate;
 
-    @JsonFormat(pattern="dd-MM-yyyy")
     private Date expireDate;
 
     @NotNull

@@ -23,6 +23,11 @@ public class PlanController {
         this.planService = planService;
     }
 
+    /**
+     * add new plan to DB
+     * @param plan
+     * @return
+     */
     @PostMapping("/")
     public ResponseEntity addNewPlan(@Valid @RequestBody Plan plan){
         try{
@@ -38,6 +43,10 @@ public class PlanController {
 
     }
 
+    /**
+     * fetching all available plans
+     * @return ResponseEntity
+     */
     @GetMapping("/")
     ResponseEntity<List<Plan>> findAllPlan(){
         try {
@@ -50,6 +59,12 @@ public class PlanController {
         }
     }
 
+    /**
+     * adding new channel to paln
+     * @param plan_id
+     * @param channel_id
+     * @return ResponseEntity
+     */
 
     @PostMapping("/{plan_id}/channel/{channel_id}")
     ResponseEntity addNewChannel(@PathVariable("plan_id") Long plan_id, @PathVariable("channel_id") Long channel_id){
@@ -72,6 +87,13 @@ public class PlanController {
 
     }
 
+
+    /**
+     * adding new service to a plan
+     * @param plan_id
+     * @param service_id
+     * @return
+     */
 
     @PostMapping("/{plan_id}/service/{service_id}")
     ResponseEntity addNewService(@PathVariable("plan_id") Long plan_id, @PathVariable("service_id") Long service_id){

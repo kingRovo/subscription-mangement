@@ -18,15 +18,30 @@ public class PlanService {
     private final ServiceRepo serviceRepo;
     private final ChannelRepo channelRepo;
 
+    /**
+     * adding new plan to DB
+     * @param plan
+     */
     @Transactional
     public void addNewPlan(Plan plan){
 
         planRepo.save(plan);
     }
+
+    /**
+     * display all available plans
+     * @return
+     */
     public List<Plan> findAllPlan(){
 
         return  planRepo.findAll();
     }
+
+    /**
+     * adding service to a particular plan
+     * @param plan_id
+     * @param service_id
+     */
 
     @Transactional
     public void addServiceToPlan(Long plan_id,Long service_id){
@@ -37,6 +52,12 @@ public class PlanService {
             planRepo.save(plan);
         }
     }
+
+    /**
+     * adding channel to plan at given plan_ID
+     * @param plan_id
+     * @param channel_id
+     */
     @Transactional
     public void addChannelToPlan(Long plan_id,Long channel_id){
 

@@ -15,12 +15,20 @@ public class PlanServicesService {
         this.serviceRepo = serviceRepo;
     }
 
+    /**
+     * add new service in DB
+     * @param services
+     */
     public void addNewService(Services services){
 
         serviceRepo.save(services);
 
     }
 
+    /**
+     * display all available service.
+     * @return
+     */
     public List<Services> findAllServices(){
         return serviceRepo.findAll();
     }

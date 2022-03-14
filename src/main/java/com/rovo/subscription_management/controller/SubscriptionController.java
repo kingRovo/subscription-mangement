@@ -5,6 +5,7 @@ import com.rovo.subscription_management.model.Subscription;
 import com.rovo.subscription_management.service.SubscriptionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -47,24 +48,7 @@ public class SubscriptionController {
     }
 
 
-    /**
-     * find all subscription
-     * @return ResponseEntity
-     */
 
-    @GetMapping("/")
-    public ResponseEntity<List<Subscription>> FindAllSubscription(){
-
-        try{
-
-            return new ResponseEntity<>(subscriptionService.displayAllSubscription(),HttpStatus.OK);
-        }
-        catch (Exception exception){
-
-            log.error("Invalid request for fetching data... ");
-            return new ResponseEntity(exception.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-    }
 
     /**
      * set plan for subscription
@@ -89,4 +73,24 @@ public class SubscriptionController {
         }
 
     }
+
+    /**
+     * this method returning subscription list..
+     * @param pageNo
+     * @param pageSize
+     * @param sortBy
+     * @return list
+     */
+    @GetMapping("/")
+    public ResponseEntity<List<Subscription>> getAllServices(
+            @RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "10") Integer pageSize,
+            @RequestParam(defaultValue = "id") String sortBy)
+    {
+        List<Subscription> list = subscriptionService.getAllServices(pageNo, pageSize, sortBy);
+
+        return new ResponseEntity<List<Subscription>>(list, new HttpHeaders(), HttpStatus.OK);
+    }
+
+
 }

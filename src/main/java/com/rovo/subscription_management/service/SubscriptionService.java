@@ -4,8 +4,13 @@ import com.rovo.subscription_management.model.Subscription;
 import com.rovo.subscription_management.repository.PlanRepo;
 import com.rovo.subscription_management.repository.SubscriptionRepo;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 @Service
@@ -41,13 +46,6 @@ public class SubscriptionService {
         }
     }
 
-    /**
-     * this fun display all subscriptions
-     * @return
-     */
-    public List<Subscription> displayAllSubscription(){
-        return subscriptionRepo.findAll();
-    }
 
     /**
      * linking plan to subscriber
@@ -67,6 +65,27 @@ public class SubscriptionService {
         }
 
 
+    }
+
+    /**
+     * this method return list of subscription
+     * @param pageNo
+     * @param pageSize
+     * @param sortBy
+     * @return
+     */
+
+    public List<Subscription> getAllServices(Integer pageNo, Integer pageSize, String sortBy)
+    {
+        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+
+        Page<Subscription> pagedResult = subscriptionRepo.findAll(paging);
+
+        if(pagedResult.hasContent()) {
+            return pagedResult.getContent();
+        } else {
+            return new ArrayList<Subscription>();
+        }
     }
 
 

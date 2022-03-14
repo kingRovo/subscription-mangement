@@ -4,17 +4,23 @@ import com.rovo.subscription_management.model.Subscription;
 import com.rovo.subscription_management.repository.PlanRepo;
 import com.rovo.subscription_management.repository.SubscriptionRepo;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 @Service
 @AllArgsConstructor
+@Slf4j
 public class SubscriptionService {
 
     private final SubscriptionRepo subscriptionRepo;
@@ -85,6 +91,22 @@ public class SubscriptionService {
             return pagedResult.getContent();
         } else {
             return new ArrayList<Subscription>();
+        }
+    }
+
+    /**
+     * writing subscription data to CSV file
+     * @param writer
+     */
+    public void writeSubscriptionToCsv(Writer writer) {
+
+        List<Subscription> subscriptionList = subscriptionRepo.findAll();
+        try (CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT)) {
+            for (Subscription subscription : subscriptionList) {
+                csvPrinter.printRecord(subscription.getId(), subscription.getName(), subscription.getType(), subscription.getExpireDate(), subscription.getUsageLimit());
+            }
+        } catch (IOException e) {
+            log.error("Error While writing CSV ", e);
         }
     }
 

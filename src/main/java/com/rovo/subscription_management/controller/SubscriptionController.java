@@ -10,7 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -81,6 +83,7 @@ public class SubscriptionController {
      * @param sortBy
      * @return list
      */
+
     @GetMapping("/")
     public ResponseEntity<List<Subscription>> getAllServices(
             @RequestParam(defaultValue = "0") Integer pageNo,
@@ -90,6 +93,14 @@ public class SubscriptionController {
         List<Subscription> list = subscriptionService.getAllServices(pageNo, pageSize, sortBy);
 
         return new ResponseEntity<List<Subscription>>(list, new HttpHeaders(), HttpStatus.OK);
+    }
+
+
+    @RequestMapping(path = "/csv")
+    public void getAllEmployeesInCsv(HttpServletResponse servletResponse) throws IOException {
+        servletResponse.setContentType("text/csv");
+        servletResponse.addHeader("Content-Disposition","attachment; filename=\"employees.csv\"");
+        subscriptionService.writeSubscriptionToCsv(servletResponse.getWriter());
     }
 
 
